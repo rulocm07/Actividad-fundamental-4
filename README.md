@@ -130,12 +130,11 @@ uvicorn app.api:app --reload --host 127.0.0.1 --port 8000
       [confirm()]                     [ship(guía)]                    [deliver()]
                          Evento: OrderConfirmed          Evento: OrderShipped           Evento: OrderDelivered
                          ────────────────────>          ──────────────────>           ─────────────────────>
-
-  ● ─────> +----------------------+      +----------------------+      +----------------------+      +----------------------+
-           | Creado, aún no        |      |     Confirmado       |      |       Enviado        |      ||      Entregado       ||
+      ● ─> +----------------------+      +----------------------+      +----------------------+      +----------------------+
+           | Creado, aún no       |      |     Confirmado      |      |       Enviado       |      ||      Entregado      ||
            | confirmado           |      |     (CONFIRMED)      |      |      (SHIPPED)       |      ||     (DELIVERED)      ||
            | (DRAFT)              |      +----------------------+      +----------------------+      +----------------------+
-           +----------------------+                 |                             |
+           +----------------------+                |                             |
                       |                            | [cancel(reason)]            | [return_order()]
                       |                            | Evento: OrderCancelled      | Evento: OrderReturned
                       |                            v                             v
@@ -149,7 +148,7 @@ uvicorn app.api:app --reload --host 127.0.0.1 --port 8000
                       |                                           |
                       v                                           v
            +-------------------------------------------------------------+
-           |                   OPERACIÓN RECHAZADA                        |
+           |                   OPERACIÓN RECHAZADA                       |
            |-------------------------------------------------------------|
            | • Pedido sin artículos.                                     |
            | • Cliente inactivo.                                         |
